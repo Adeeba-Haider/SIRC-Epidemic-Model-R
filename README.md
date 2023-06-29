@@ -6,7 +6,7 @@ The code in this repository includes the necessary functions and equations to si
 
 Features
 Numerical solver to compute the solution of the SIRC model equations
-Plots showing the changes in the number of susceptible, infected, recovered, and cumulative cases over time
+Plots showing the changes in the number of susceptible, infected, recovered, and cross-immuned cases over time
 Usage
 Make sure you have R and the deSolve package installed on your machine.
 Clone or download this repository.
