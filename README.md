@@ -1,5 +1,5 @@
 SIRC Model in R
-This repository contains the implementation of the SIRC (Susceptible-Infected-Recovered-Compartmental) model in R. The SIRC model is a mathematical framework used to simulate the spread of infectious diseases within a population.
+This repository contains the implementation of the SIRC (Susceptible-Infected-Recovered-Cross-immuned) model in R. The SIRC model is a mathematical framework used to simulate the spread of infectious diseases within a population.
 
 Description
 The code in this repository includes the necessary functions and equations to simulate the dynamics of an epidemic using the SIRC model. It takes into account parameters such as the infectious population's recovery rate, the rate at which the cross-immune population reverts to being susceptible, every compartment's mortality rate is equal to the population's infant mortality rate, and the rate at which the recovered population develops cross-immunity.
