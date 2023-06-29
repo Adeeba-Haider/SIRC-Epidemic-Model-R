@@ -1,0 +1,45 @@
+library(deSolve)
+
+# Set parameter values
+Beta <- 0.05
+Nu1 <- 0.02
+Nu2 <- 0.02
+Nu3 <- 0.01
+Nu4 <- 0.02
+Gamma <- 0.02
+Eta <- 0.0005
+Sigma <- 0.12
+Alpha <- 0.2
+Tau <- 1.4
+Xi <- 0.6
+
+A1 <- 1
+A2 <- 0.01
+A3 <- 0.01
+A4 <- 0.01
+
+# Define the SIRC model
+sirc_model <- function(time, state, parameters) {
+  with(as.list(c(state, parameters)), {
+    ds <- Eta * (1 - s) - Xi * s * i_lag + Beta * c
+    di <- Xi * s * i_lag + Sigma * Xi * c * i - (Eta + Alpha) * i
+    dr <- (1 - Sigma) * Xi * c * i + Alpha * i - (Eta + Gamma) * r
+    dc <- Gamma * r - Xi * c * i - (Eta + Beta) * c
+    return(list(c(ds, di, dr, dc)))
+  })
+}
+
+# Set initial conditions
+initial_state <- c(s = A1, i = A2, r = A3, c = A4)
+
+# Set timepoints
+times <- seq(0, 100, by = 0.1)
+
+# Solve the SIRC model
+solution <- ode(y = initial_state, times = times, func = sirc_model, 
+                parms = list(Beta = Beta, Eta = Eta, Xi = Xi, Sigma = Sigma, 
+                             Alpha = Alpha, Gamma = Gamma), method = "ode45")
+
+# Plot the results
+plot(solution, xlab = "Time", ylab = "Population", main = "SIRC Model",
+     col = c("blue", "black", "red", "yellow"), lwd = 2, legend = c("Susceptible", "Infected", "Recovered", "Cross-immuned"))
